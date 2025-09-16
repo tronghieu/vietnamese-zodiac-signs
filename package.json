@@ -1,6 +1,6 @@
 {
   "name": "vietnamese-zodiac-signs",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A TypeScript library to convert birth year to corresponding zodiac animal according to Vietnamese culture",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

@@ -3,8 +3,8 @@ import {
   getZodiacAnimal,
   getYearsForAnimal,
   isAnimalYear,
-} from './zodiac';
-import { VietnameseZodiacAnimal, EnglishZodiacAnimal } from './types';
+} from '../zodiac';
+import { VietnameseZodiacAnimal, EnglishZodiacAnimal } from '../types';
 
 describe('Vietnamese Zodiac Library', () => {
   describe('getZodiacSign', () => {

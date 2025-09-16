@@ -1,14 +1,19 @@
 import { VietnameseZodiacAnimal, EnglishZodiacAnimal, ZodiacSign, ZodiacOptions } from './types';
 
 /**
+ * Type for zodiac cycle entry
+ */
+interface ZodiacCycleEntry {
+  readonly vietnamese: VietnameseZodiacAnimal;
+  readonly english: EnglishZodiacAnimal;
+}
+
+/**
  * Vietnamese zodiac animals in order (12-year cycle)
  * Starting from Rat (Tý) which corresponds to years ending in 4, 16, 28, etc.
  * Base year 1900 corresponds to Rat (Tý)
  */
-const ZODIAC_CYCLE: Array<{
-  vietnamese: VietnameseZodiacAnimal;
-  english: EnglishZodiacAnimal;
-}> = [
+const ZODIAC_CYCLE: readonly ZodiacCycleEntry[] = [
   { vietnamese: VietnameseZodiacAnimal.Rat, english: EnglishZodiacAnimal.Rat },
   { vietnamese: VietnameseZodiacAnimal.Buffalo, english: EnglishZodiacAnimal.Buffalo },
   { vietnamese: VietnameseZodiacAnimal.Tiger, english: EnglishZodiacAnimal.Tiger },
@@ -21,12 +26,23 @@ const ZODIAC_CYCLE: Array<{
   { vietnamese: VietnameseZodiacAnimal.Rooster, english: EnglishZodiacAnimal.Rooster },
   { vietnamese: VietnameseZodiacAnimal.Dog, english: EnglishZodiacAnimal.Dog },
   { vietnamese: VietnameseZodiacAnimal.Pig, english: EnglishZodiacAnimal.Pig },
-];
+] as const;
 
 /**
  * Base year for the zodiac calculation (Rat year)
  */
 const BASE_YEAR = 1900;
+
+/**
+ * Performance optimization: Map for O(1) animal lookup instead of O(n) loop
+ * Maps each zodiac animal to its position in the cycle
+ */
+const ANIMAL_TO_POSITION_MAP = new Map<VietnameseZodiacAnimal | EnglishZodiacAnimal, number>(
+  ZODIAC_CYCLE.flatMap((entry, index) => [
+    [entry.vietnamese, index],
+    [entry.english, index],
+  ])
+);
 
 /**
  * Calculate the zodiac animal for a given birth year
@@ -40,12 +56,8 @@ export function getZodiacSign(year: number): ZodiacSign {
     throw new Error('Year must be a valid 4-digit integer');
   }
 
-  // Calculate the position in the 12-year cycle
-  const cyclePosition = (year - BASE_YEAR) % 12;
-  // Handle negative years (before base year)
-  const adjustedPosition = cyclePosition < 0 ? cyclePosition + 12 : cyclePosition;
-  
-  const zodiacInfo = ZODIAC_CYCLE[adjustedPosition];
+  const adjustedPosition: number = calculateCyclePosition(year);
+  const zodiacInfo: ZodiacCycleEntry = ZODIAC_CYCLE[adjustedPosition];
   
   return {
     vietnamese: zodiacInfo.vietnamese,
@@ -65,8 +77,8 @@ export function getZodiacSign(year: number): ZodiacSign {
 export function getZodiacAnimal(
   year: number,
   options: ZodiacOptions = { language: 'both' }
-): string | { vietnamese: string; english: string } {
-  const zodiacSign = getZodiacSign(year);
+): string | { vietnamese: VietnameseZodiacAnimal; english: EnglishZodiacAnimal } {
+  const zodiacSign: ZodiacSign = getZodiacSign(year);
   
   switch (options.language) {
     case 'vietnamese':
@@ -99,25 +111,18 @@ export function getYearsForAnimal(
     throw new Error('Start year must be less than or equal to end year');
   }
 
-  const years: number[] = [];
+  // Performance optimization: Use Map for O(1) lookup instead of O(n) loop
+  const targetPosition: number | undefined = ANIMAL_TO_POSITION_MAP.get(animal);
   
-  // Find the zodiac cycle position for the given animal
-  let targetPosition = -1;
-  for (let i = 0; i < ZODIAC_CYCLE.length; i++) {
-    if (ZODIAC_CYCLE[i].vietnamese === animal || ZODIAC_CYCLE[i].english === animal) {
-      targetPosition = i;
-      break;
-    }
-  }
-  
-  if (targetPosition === -1) {
+  if (targetPosition === undefined) {
     throw new Error('Invalid zodiac animal provided');
   }
   
+  const years: number[] = [];
+  
   // Find all years in the range that match this animal
   for (let year = startYear; year <= endYear; year++) {
-    const cyclePosition = (year - BASE_YEAR) % 12;
-    const adjustedPosition = cyclePosition < 0 ? cyclePosition + 12 : cyclePosition;
+    const adjustedPosition: number = calculateCyclePosition(year);
     
     if (adjustedPosition === targetPosition) {
       years.push(year);
@@ -139,9 +144,21 @@ export function isAnimalYear(
   animal: VietnameseZodiacAnimal | EnglishZodiacAnimal
 ): boolean {
   try {
-    const zodiacSign = getZodiacSign(year);
+    const zodiacSign: ZodiacSign = getZodiacSign(year);
     return zodiacSign.vietnamese === animal || zodiacSign.english === animal;
   } catch {
     return false;
   }
+}
+
+/**
+ * Helper function to calculate cycle position from year
+ * Used internally for consistent cycle position calculation
+ * 
+ * @param year - The year to calculate position for
+ * @returns The position in the 12-year cycle (0-11)
+ */
+function calculateCyclePosition(year: number): number {
+  const cyclePosition: number = (year - BASE_YEAR) % 12;
+  return cyclePosition < 0 ? cyclePosition + 12 : cyclePosition;
 }

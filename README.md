@@ -1,4 +1,4 @@
-# Tử Vi Cung Hoàng Đạo Việt Nam / Vietnamese Zodiac Signs
+# Mười Hai Con Giáp Việt Nam / Vietnamese Zodiac Signs
 
 Thư viện TypeScript để chuyển đổi năm sinh thành con giáp tương ứng theo văn hóa Việt Nam.
 
@@ -10,7 +10,7 @@ A TypeScript library to convert birth year to corresponding zodiac animal accord
 
 ### Tính năng
 
-- 🇻🇳 Hệ thống tử vi chính thống của Việt Nam (có con Mèo thay vì con Thỏ)
+- 🇻🇳 Hệ thống 12 con giáp chính thống của Việt Nam (có con Mèo thay vì con Thỏ)
 - 🔢 Chuyển đổi năm sinh thành con giáp
 - 🌐 Hỗ trợ cả tên tiếng Việt và tiếng Anh
 - 📅 Tìm tất cả các năm của một con giáp cụ thể trong khoảng thời gian
@@ -177,12 +177,12 @@ npm run test:coverage
 
 Dự án này được cấp phép theo Giấy phép MIT - xem file [LICENSE](LICENSE) để biết chi tiết.
 
-### Sự khác biệt với Tử Vi Trung Quốc
+### Sự khác biệt với 12 Con Giáp Trung Quốc
 
-Tử vi Việt Nam tương tự như tử vi Trung Quốc nhưng có một điểm khác biệt quan trọng:
+12 con giáp Việt Nam tương tự như 12 con giáp Trung Quốc nhưng có một điểm khác biệt quan trọng:
 - **Con Mèo (Mão)** thay vì **con Thỏ** ở vị trí thứ 4
 
-Thư viện này đặc biệt triển khai phiên bản tử vi Việt Nam.
+Thư viện này đặc biệt triển khai phiên bản 12 con giáp Việt Nam.
 
 ---
 

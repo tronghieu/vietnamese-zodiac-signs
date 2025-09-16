@@ -12,7 +12,8 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "isolatedModules": true
   },
   "include": [
     "src/**/*"
@@ -20,6 +21,7 @@
   "exclude": [
     "dist",
     "node_modules",
+    "src/__tests__/**/*",
     "**/*.test.ts",
     "**/*.spec.ts"
   ]
