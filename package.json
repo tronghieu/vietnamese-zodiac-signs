@@ -1,0 +1,49 @@
+{
+  "name": "vietnamese-zodiac-signs",
+  "version": "1.0.0",
+  "description": "A TypeScript library to convert birth year to corresponding zodiac animal according to Vietnamese culture",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "prepublishOnly": "npm run build",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix"
+  },
+  "keywords": [
+    "vietnamese",
+    "zodiac",
+    "animal",
+    "birth-year",
+    "typescript",
+    "lunar-calendar"
+  ],
+  "author": "Luu Trong Hieu",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luutronghieu/vietnamese-zodiac-signs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/luutronghieu/vietnamese-zodiac-signs/issues"
+  },
+  "homepage": "https://github.com/luutronghieu/vietnamese-zodiac-signs#readme",
+  "devDependencies": {
+    "@types/jest": "^29.5.5",
+    "@types/node": "^20.6.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "eslint": "^8.49.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.2.2"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ]
+}
