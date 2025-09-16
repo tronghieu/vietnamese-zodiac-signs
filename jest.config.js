@@ -17,6 +17,7 @@ module.exports = {
     '!src/**/__tests__/**/*.ts',
     '!src/**/*.test.ts',
     '!src/**/*.spec.ts',
+    '!src/index.ts', // Exclude simple re-export file from coverage
   ],
   coverageDirectory: 'coverage',
   coverageReporters: ['text', 'lcov', 'html'],
