@@ -135,7 +135,7 @@ Kiểm tra xem một năm có phải của con giáp cụ thể hay không.
 
 ```bash
 # Clone repository
-git clone https://github.com/luutronghieu/vietnamese-zodiac-signs.git
+git clone https://github.com/tronghieu/vietnamese-zodiac-signs.git
 cd vietnamese-zodiac-signs
 
 # Cài đặt dependencies
@@ -359,7 +359,7 @@ interface ZodiacOptions {
 
 ```bash
 # Clone the repository
-git clone https://github.com/luutronghieu/vietnamese-zodiac-signs.git
+git clone https://github.com/tronghieu/vietnamese-zodiac-signs.git
 cd vietnamese-zodiac-signs
 
 # Install dependencies

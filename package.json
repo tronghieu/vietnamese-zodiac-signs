@@ -1,6 +1,6 @@
 {
   "name": "vietnamese-zodiac-signs",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A TypeScript library to convert birth year to corresponding zodiac animal according to Vietnamese culture",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -25,12 +25,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/luutronghieu/vietnamese-zodiac-signs.git"
+    "url": "git+https://github.com/tronghieu/vietnamese-zodiac-signs.git"
   },
   "bugs": {
-    "url": "https://github.com/luutronghieu/vietnamese-zodiac-signs/issues"
+    "url": "https://github.com/tronghieu/vietnamese-zodiac-signs/issues"
   },
-  "homepage": "https://github.com/luutronghieu/vietnamese-zodiac-signs#readme",
+  "homepage": "https://github.com/tronghieu/vietnamese-zodiac-signs#readme",
   "devDependencies": {
     "@types/jest": "^29.5.5",
     "@types/node": "^20.6.0",
